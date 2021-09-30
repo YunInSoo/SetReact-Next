@@ -1,0 +1,8 @@
+.container_section{
+    height: 100vh;
+}
+.add_button__fixed{
+    position: fixed;
+    top: 40px;
+    left: 40px;
+}
