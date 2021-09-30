@@ -3,6 +3,10 @@ import { useCallback, useEffect, useState } from "react";
 import type { NextPage } from "next";
 import styles from "../styles/ObserverPage.module.css";
 
+/* 
+    observer를 이용한 console.log()관찰하기, 
+    click 이벤트를 이용한 section화면 추가 기능
+*/
 const ObserverPage: NextPage = () =>{
     const [list, setList] = useState(['1','2','3','4'])
     let count = 0
