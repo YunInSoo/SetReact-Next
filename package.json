@@ -20,6 +20,7 @@
   "homepage": "https://github.com/YunInSoo/SetReact-Next#readme",
   "dependencies": {
     "axios": "^0.22.0",
+    "immer": "^9.0.6",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "next": "11.1.2",
