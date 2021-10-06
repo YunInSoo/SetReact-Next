@@ -1,47 +1,53 @@
-import { InitState, changeNameAction } from '../reducers/redux';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { InitState, RootState, changeNameAction } from '../reducers/redux';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Image from 'next/image'
-import type { NextPage } from 'next'
+import Image from 'next/image';
+import type { NextPage } from 'next';
 import UserContext from '../constants/UserContext';
 import { changeNameActionContext } from '../reducers/contextAPI';
-import styles from '../styles/Home.module.css'
-import useInput from "../hooks/useInput";
+import styles from '../styles/Home.module.css';
+import useInput from '../hooks/useInput';
 
 const Home: NextPage = () => {
   const context: any = useContext(UserContext);
-  
+
   //Redux========================================================
   const dispatch = useDispatch();
-  const nameInput = useInput('')
-  const state = useSelector((state: InitState) => state)
-  const formSubmit = useCallback((e)=>{
-    dispatch(changeNameAction(nameInput.value));
-    e.preventDefault()
-  },[nameInput.value]);
-  
-  const nameUserData = useMemo(() => { 
-    let name = state.name;
-    name = name.split(" ")[0]
-    return name;
-  }, [state.name])
-  
-  //ContextAPI===================================================
-  const {user, dispatchUser} = context;
-  const nameInputTwo = useInput('')
-  const formSubmitTwo = useCallback((e)=>{
-    dispatchUser({type:'CHANGE_NICKNAME', data:nameInputTwo.value});
-    console.log(user.name)
-    e.preventDefault()
-  },[nameInputTwo.value]);
+  const nameInput = useInput('');
+  const state = useSelector((state: RootState) => state.test);
+  const formSubmit = useCallback(
+    (e) => {
+      dispatch(changeNameAction(nameInput.value));
+      e.preventDefault();
+    },
+    [nameInput.value]
+  );
 
-  const nameUserDataTwo = useMemo(() => { 
-    let name = user.name;
-    name = name.split(" ")[0]
+  const nameUserData = useMemo(() => {
+    let name = state.name;
+    name = name.split(' ')[0];
     return name;
-  }, [user])
-  
+  }, [state.name]);
+
+  //ContextAPI===================================================
+  const { user, dispatchUser } = context;
+  const nameInputTwo = useInput('');
+  const formSubmitTwo = useCallback(
+    (e) => {
+      dispatchUser({ type: 'CHANGE_NICKNAME', data: nameInputTwo.value });
+      console.log(user.name);
+      e.preventDefault();
+    },
+    [nameInputTwo.value]
+  );
+
+  const nameUserDataTwo = useMemo(() => {
+    let name = user.name;
+    name = name.split(' ')[0];
+    return name;
+  }, [user]);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -75,7 +81,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

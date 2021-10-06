@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import FormAddSubmit from '../components/FormSubmit';
 import { NextPage } from 'next';
+import httpAxios from '../services/api';
 import produce from 'immer';
 import useAxios from '../hooks/useAxios';
 import useInput from '../hooks/useInput';
@@ -22,9 +23,12 @@ const AxiosPage: NextPage = () => {
   const context = useInput('');
   const email = useInput('');
 
-  const { state: axiosData, setState: setAxiosData }: any = useAxios({
-    url: 'https://yts.mx/api/v2/list_movies.json',
-  });
+  const { state: axiosData, setState: setAxiosData }: any = useAxios(
+    {
+      url: '/api/v2/list_movies.json',
+    },
+    httpAxios()
+  );
 
   const list = useMemo(() => {
     const axiosTest: model = axiosData?.data?.data?.data;
@@ -63,11 +67,21 @@ const AxiosPage: NextPage = () => {
       contextTemp = context.value;
       emailTemp = email.value;
       setAxiosData(
-        produce((draftState: any) => {
+        //produce 작동부분
+        produce(axiosData, (draftState: any) => {
           draftState.data.data.data.movies.push({
             title: contextTemp,
           });
         })
+      );
+      console.log(
+        `produce((draftState: any) => {
+          draftState.data.data.data.movies.push({
+            title: contextTemp,
+          });
+        })
+        이부분에서 axiosData를 제거해도 작동이 된다?? setAxiosData에서 initstate를 그대로 뿌려주는가? 알아보기
+        `
       );
       e.preventDefault();
     },
