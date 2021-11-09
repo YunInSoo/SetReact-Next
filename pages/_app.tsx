@@ -1,20 +1,20 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
 
-import { userDummy, userReducerContext } from '../reducers/contextAPI'
+import { userDummy, userReducerContext } from '../reducers/contextAPI';
 
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import { useReducer } from 'react'
-import userContext from '../constants/UserContext'
-import wrapper from '../store/configureStore'
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useReducer } from 'react';
+import userContext from '../constants/UserContext';
+import wrapper from '../store/configureStore';
 
 /*
   Redux와 ContextAPI 비교하기
-*/ 
+*/
 const MyApp = ({ Component }: AppProps) => {
   //Context API 사용하기
-  const [user, dispatchUser] = useReducer(userReducerContext, userDummy)
-  const providerValue: any= {user, dispatchUser}
+  const [user, dispatchUser] = useReducer(userReducerContext, userDummy);
+  const providerValue: any = { user, dispatchUser };
   return (
     <>
       <Head>
@@ -26,8 +26,7 @@ const MyApp = ({ Component }: AppProps) => {
         <Component />
       </userContext.Provider>
     </>
-  )
-}
+  );
+};
 //Redux 사용하기
 export default wrapper.withRedux(MyApp);
- 

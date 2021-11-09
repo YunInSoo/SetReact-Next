@@ -2,10 +2,14 @@ import { combineReducers } from 'redux';
 import httpAxios from '../../services/api';
 import produce from 'immer';
 
+export const REQEUST_SAGA_TEST = 'REQEUST_SAGA_TEST';
+export const SUCCESS_CHANGE_NICKNAME = 'CHANGE_NICKNAME';
+
 export type InitState = {
   name: string;
   age: number;
   password: string;
+  requestSagaTest: boolean;
 };
 
 export const changeNameAction = (data: string) => {
@@ -19,12 +23,18 @@ const initialState: InitState = {
   name: 'yunis',
   age: 27,
   password: 'babo',
+  requestSagaTest: false,
 };
 
 //immer 라이브러리 없이 사용하기
 const test = (state: InitState = initialState, action: any) => {
   switch (action.type) {
-    case 'CHANGE_NICKNAME':
+    case REQEUST_SAGA_TEST:
+      return {
+        ...state,
+        requestSagaTest: true,
+      };
+    case SUCCESS_CHANGE_NICKNAME:
       return {
         ...state,
         name: action.data,
