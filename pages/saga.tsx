@@ -20,6 +20,7 @@ const Saga: NextPage = () => {
 
   return (
     <div>
+      <div>Redux DevTools에서 확인해보세요</div>
       <DivWrapperTwo>Request saga</DivWrapperTwo>
     </div>
   );
