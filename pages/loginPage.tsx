@@ -26,6 +26,10 @@ const LoginPage: NextPage = () => {
         isLogined: true, //실제로 이걸로 작동안됩니다.
         post: [{ title: 'sfesf' }, { title: 'sfesf2' }],
       });
+      /* 
+      dispatch를 하는 이유는 loginFetchAPI 리턴값에 액션타입이 들어가있기때문이고,
+      dispatch를 통해서 reducer 데이터값을 변경해야되기 때문입니다.
+      */
       dispatch(resultActionData);
     },
     [id, password]
