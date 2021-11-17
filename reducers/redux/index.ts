@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import httpAxios from '../../services/api';
 import produce from 'immer';
-
+import list from './todoList';
 export const REQEUST_SAGA_TEST = 'REQEUST_SAGA_TEST';
 export const SUCCESS_CHANGE_NICKNAME = 'CHANGE_NICKNAME';
 
@@ -121,6 +121,7 @@ const user = (state: UserInitState = userInitialState, action: any) => {
 const rootReducer = combineReducers({
   test,
   user,
+  list,
 });
 
 export default rootReducer;
