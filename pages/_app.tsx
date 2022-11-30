@@ -28,5 +28,6 @@ const MyApp = ({ Component }: AppProps) => {
     </>
   );
 };
+
 //Redux 사용하기
 export default wrapper.withRedux(MyApp);
