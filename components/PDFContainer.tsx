@@ -1,3 +1,6 @@
+interface MakePDFTypes {
+  topElementImg: string;
+}
 import {
   Document,
   Font,
@@ -6,7 +9,7 @@ import {
   StyleSheet,
   Text,
 } from '@react-pdf/renderer';
-export const MakePDF = () => {
+export const MakePDF = ({ topElementImg }: MakePDFTypes) => {
   // const [currentCurrent, setCurrentCurrent] = useState(1);
   return (
     <Document>
@@ -14,6 +17,7 @@ export const MakePDF = () => {
         <Text style={styles.header} fixed>
           ~ Created with react-pdf ~
         </Text>
+        <Image style={styles.image2} src={topElementImg} />
         <Text style={styles.title}>Don Quijote de la Mancha</Text>
         <Text style={styles.author}>Miguel de Cervantes</Text>
         <Image style={styles.image} src="/static/images/quijote1.jpg" />
@@ -223,6 +227,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Times-Roman',
   },
   image: {
+    marginVertical: 15,
+    marginHorizontal: 100,
+  },
+  image2: {
+    width: '300%',
     marginVertical: 15,
     marginHorizontal: 100,
   },
