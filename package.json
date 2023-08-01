@@ -4,6 +4,7 @@
   "description": "Setting up using React and Next.js.",
   "main": "index.js",
   "scripts": {
+    "sb": "npx sb dev",
     "dev": "next",
     "build": "next build",
     "start": "next start",

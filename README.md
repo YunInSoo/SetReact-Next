@@ -8,6 +8,9 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
+
+# StoryBook 실행 법
+npm run sb
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
